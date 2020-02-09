@@ -28,7 +28,7 @@ while getopts ":d:r:t:n:o:u:" param; do
             ;;
         n)
             n=${OPTARG}
-            [ "${n//[0-9A-Za-z]/}" = "" ]] || usage
+            [[ "${n//[0-9A-Za-z]/}" = "" ]] || usage
             ;;
         o)
             o=${OPTARG}
