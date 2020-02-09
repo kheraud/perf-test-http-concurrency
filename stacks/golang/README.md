@@ -1,8 +1,8 @@
 # Go performance test under high HTTP load
 
-This simple HTTP server is built using `net/http` :
+This simple HTTP server is built using `net/http` for Golang `1.13.7` :
 
-```
+```golang
 http.HandleFunc("/", func (w http.ResponseWriter, r *http.Request) {
     fmt.Fprintf(w, "Hay Golang!")
 })
