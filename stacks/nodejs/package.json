@@ -1,0 +1,10 @@
+{
+  "name": "test-perf-nodejs",
+  "version": "1.0.0",
+  "description": "Performance test with Node.js",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {}
+}
