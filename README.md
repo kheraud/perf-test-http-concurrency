@@ -24,6 +24,12 @@ These dependencies are required to be able to run performance tests
 - [Vegeta](https://github.com/tsenart/vegeta)
 - [Optional] [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) with a cloud provided kubernetes properly configured
 
+## Usage
+
+- `docker ps || sudo systemctl start docker`
+- `make dockers`
+- `make all`
+
 ## Todo
 - [x] Add vegeta scripts to test load within cluster
 - Add [kustomize](https://github.com/kubernetes-sigs/kustomize) templates to have generation of k8s manifests
