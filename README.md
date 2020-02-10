@@ -15,6 +15,7 @@ Then, compare performance results of these stacks.
 
 - [Golang](stacks/golang)
 - [NodeJs](stacks/nodejs)
+- [PHP in a PHP-FPM container](stacks/php/standalone)
 
 ## Requirements
 
