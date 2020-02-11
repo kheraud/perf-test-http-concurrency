@@ -42,4 +42,4 @@ dockers:
 	@echo "~ Creating local dockers for testing"
 	@docker run -p 9000:9000 -d kheraud/perf-test-http-concurrency-go
 	@docker run -p 9001:9000 -d kheraud/perf-test-http-concurrency-nodejs
-	@EXPOSED_PORT=9002 docker-compose -f ./stacks/php/standalone/docker-compose.yml up -d
+	@docker run -p 9002:80 -d kheraud/perf-test-http-concurrency-phpstandalone

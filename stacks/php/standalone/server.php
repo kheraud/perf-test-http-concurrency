@@ -1,3 +1,3 @@
 <?php
-echo "Hay PHP alone!";
+echo "Hay PHP standalone!";
 ?>

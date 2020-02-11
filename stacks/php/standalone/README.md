@@ -8,4 +8,4 @@ echo "Hay PHP alone!";
 ?>
 ```
 
-Orchestrate locally with [docker-compose](docker-compose.yml)
+A built docker is available at [kheraud/perf-test-http-concurrency-phpstandalone](https://hub.docker.com/r/kheraud/perf-test-http-concurrency-phpstandalone) : `docker run -p 9000:80 -d kheraud/perf-test-http-concurrency-phpstandalone`
