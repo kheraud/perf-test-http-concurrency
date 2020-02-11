@@ -1,0 +1,43 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+    name: {{ .Values.namespace | quote }}
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: gateway-load-testing
+  namespace: {{ .Values.namespace | quote }}
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - {{ .Values.domain | quote }}
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  namespace: {{ .Values.namespace | quote }}
+  name: virt-{{ .name | quote }}
+spec:
+  hosts:
+    - {{ .Values.domain | quote }}
+  gateways:
+    - gateway-load-testing
+  http:
+  - match:
+    {{- range .Values.stacks }}
+    - uri:
+        prefix: {{ printf "/%s" .name | quote }}
+    rewrite:
+        uri: "/"
+    route:
+    - destination:
+        host: svc-{{ .name | quote }}
+    {{- end }}
+---

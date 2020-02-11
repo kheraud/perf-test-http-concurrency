@@ -33,9 +33,9 @@ These dependencies are required to be able to run performance tests
 
 ## Todo
 - [x] Add vegeta scripts to test load within cluster
-- Add [kustomize](https://github.com/kubernetes-sigs/kustomize) templates to have generation of k8s manifests
+- [x] Add Helm charts for load-testing in k8s / Istio
 - Add Nginx + wsgi + Python stack
-- Add Nginx + fastcgi + PHP Stack
+- [x] Add Nginx + fastcgi + PHP Stack
 
 ## Stack to consider
 - Elixir/Erlang

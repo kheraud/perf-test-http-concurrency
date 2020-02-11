@@ -1,0 +1,38 @@
+{{- $namespace := .Values.namespace -}}
+{{- $replicaCount := .Values.replicaCount -}}
+{{- range .Values.stacks }}
+kind: Service
+apiVersion: v1
+metadata:
+    namespace: {{ $namespace }}
+    name: svc-{{ .name | quote }}
+spec:
+    selector:
+        app: stack-{{ .name | quote }}
+    ports:
+        - protocol: TCP
+          port: 80
+          name: http-{{ .name | quote }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    namespace: {{ $namespace }}
+    name: dp-{{ .name | quote }}
+spec:
+    replicas: {{ $replicaCount }}
+    selector:
+        matchLabels:
+            app: stack-{{ .name | quote }}
+    template:
+        metadata:
+            namespace: {{ $namespace }}
+            labels:
+                app: stack-{{ .name | quote }}
+        spec:
+            containers:
+                - name: app-{{ .name | quote }}
+                  image: {{ .image | quote }}
+                  ports:
+                      - containerPort: {{ .port | default 9000 }}
+{{- end }}

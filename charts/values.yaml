@@ -1,0 +1,13 @@
+namespace: "loadtest"
+replicaCount: 5
+domain: "localhost"
+stacks:
+  - name: "nodejs"
+    image: "kheraud/perf-test-http-concurrency-nodejs:latest"
+    port: 9000
+  - name: "golang"
+    image: "kheraud/perf-test-http-concurrency-go:latest"
+    port: 9000
+  - name: "phpstandalone"
+    image: "kheraud/perf-test-http-concurrency-phpstandalone:latest"
+    port: 80
