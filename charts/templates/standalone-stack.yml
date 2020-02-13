@@ -5,34 +5,37 @@ kind: Service
 apiVersion: v1
 metadata:
     namespace: {{ $namespace }}
-    name: svc-{{ .name | quote }}
+    name: {{ printf "svc-%s" .name | quote }}
 spec:
     selector:
-        app: stack-{{ .name | quote }}
+        app: {{ printf "stack-%s" .name | quote }}
     ports:
         - protocol: TCP
           port: 80
-          name: http-{{ .name | quote }}
+          name: {{ printf "http-%s" .name | quote }}
+          targetPort: {{ printf "p-%s" .name | quote }}
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
     namespace: {{ $namespace }}
-    name: dp-{{ .name | quote }}
+    name: {{ printf "dp-%s" .name | quote }}
 spec:
     replicas: {{ $replicaCount }}
     selector:
         matchLabels:
-            app: stack-{{ .name | quote }}
+            app: {{ printf "stack-%s" .name | quote }}
     template:
         metadata:
             namespace: {{ $namespace }}
             labels:
-                app: stack-{{ .name | quote }}
+                app: {{ printf "stack-%s" .name | quote }}
         spec:
             containers:
-                - name: app-{{ .name | quote }}
+                - name: {{ printf "app-%s" .name | quote }}
                   image: {{ .image | quote }}
                   ports:
                       - containerPort: {{ .port | default 9000 }}
+                        name: {{ printf "p-%s" .name | quote }}
+---
 {{- end }}
